@@ -36,4 +36,4 @@ parts:
         cd ../src
         git checkout "${last_committed_tag}"
       fi
-      snapcraftctl set-version "$(last_committed_tag_ver)"
+      snapcraftctl set-version "${last_committed_tag_ver}"
