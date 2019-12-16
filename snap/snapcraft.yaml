@@ -1,6 +1,7 @@
 name: matterbridge
 adopt-info: matterbridge
 summary: MatterBridge protocol bridge
+base: core18
 description: |
   bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram,
   rocket.chat, hipchat (via xmpp), steam and matrix with REST API
@@ -16,11 +17,11 @@ apps:
       - network-bind
 
 parts:
-  go:
-    source-tag: go1.9
   matterbridge:
-    after: [go]
     plugin: go
+    build-packages:
+      - gcc
+    go-channel: 1.12/stable
     source: git://github.com/42wim/matterbridge.git
     go-importpath: github.com/42wim/matterbridge
     override-pull: |
