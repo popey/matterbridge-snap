@@ -17,6 +17,9 @@ apps:
       - network-bind
 
 parts:
+  build-trigger:
+    plugin: nil
+    source: https://github.com/42wim/matterbridge.git
   matterbridge:
     plugin: go
     build-packages:
