@@ -24,7 +24,7 @@ parts:
     plugin: go
     build-packages:
       - gcc
-    go-channel: 1.13/stable
+    go-channel: 1.17/stable
     source: git://github.com/42wim/matterbridge.git
     go-importpath: github.com/42wim/matterbridge
     override-pull: |
