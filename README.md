@@ -9,4 +9,4 @@ Upstream documentation can be found at https://github.com/42wim/matterbridge/wik
 
 This snap is strictly confined and has only `network` and `network-bind` interfaces connected, and is ideal for running on a Raspberry Pi or other small device.
 
-Note: Configuration files should be located in `~/snap/matterbridge/current/`
+Note: The `matterbridge.toml` configuration file should be located in `/var/snap/matterbridge/common`.
