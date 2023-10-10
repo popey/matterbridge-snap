@@ -11,7 +11,8 @@ confinement: strict
 
 apps:
   matterbridge:
-    command: matterbridge
+    command: bin/matterbridge -conf $SNAP_COMMON/matterbridge.toml
+    daemon: simple
     plugs:
       - network
       - network-bind
