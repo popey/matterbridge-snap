@@ -1,5 +1,5 @@
 name: matterbridge
-adopt-info: matterbridge
+version: "v1.26.0"
 summary: MatterBridge protocol bridge
 base: core20
 description: |
@@ -36,4 +36,3 @@ parts:
         cd ../src
         git checkout "${last_committed_tag}"
       fi
-      snapcraftctl set-version "${last_committed_tag_ver}"
