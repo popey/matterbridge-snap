@@ -24,6 +24,8 @@ apps:
 parts:
   matterbridge:
     plugin: go
+    build-snaps:
+      - go/latest/stable
     build-packages:
       - gcc
     source: https://github.com/42wim/matterbridge.git
