@@ -1,5 +1,5 @@
 name: matterbridge
-adopt-info: matterbridge
+version: "v1.26.0"
 summary: MatterBridge protocol bridge
 base: core24
 license: Apache-2.0
@@ -48,8 +48,4 @@ parts:
     build-packages:
       - gcc
     source: https://github.com/42wim/matterbridge.git
-    override-pull: |
-      craftctl default
-      last_committed_tag="$(git describe --tags $(git rev-list --tags --max-count=1))"
-      git checkout "${last_committed_tag}"
-      craftctl set-version "${last_committed_tag}"
+    source-tag: $SNAPCRAFT_PROJECT_VERSION
