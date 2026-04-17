@@ -2,21 +2,40 @@ name: matterbridge
 version: "v1.26.0"
 summary: MatterBridge protocol bridge
 base: core24
+license: Apache-2.0
+contact: https://github.com/popey/matterbridge-snap/issues
+issues: https://github.com/popey/matterbridge-snap/issues
+source-code: https://github.com/popey/matterbridge-snap
+website: https://github.com/42wim/matterbridge
 description: |
-  bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram,
-  rocket.chat, hipchat (via xmpp), steam and matrix with REST API
+  Bridge between mattermost, IRC, gitter, xmpp, slack, discord, telegram,
+  rocket.chat, hipchat (via xmpp), steam and matrix with REST API.
 
-grade: stable
-confinement: strict
+  After installing, copy your configuration file to:
+
+    /var/snap/matterbridge/common/matterbridge.toml
+
+  The service will start automatically. Check logs with:
+
+    snap logs matterbridge
+
+  See https://github.com/42wim/matterbridge/wiki for configuration help.
+
+  This snap is maintained by Alan Pope, and is not
+  necessarily endorsed or officially maintained by the upstream developers.
 
 platforms:
   amd64:
   arm64:
 
+grade: stable
+confinement: strict
+
 apps:
   matterbridge:
     command: bin/matterbridge -conf $SNAP_COMMON/matterbridge.toml
     daemon: simple
+    restart-condition: on-failure
     plugs:
       - network
       - network-bind
@@ -29,16 +48,4 @@ parts:
     build-packages:
       - gcc
     source: https://github.com/42wim/matterbridge.git
-    override-pull: |
-      craftctl default
-      last_committed_tag="$(git describe --tags $(git rev-list --tags --max-count=1))"
-      last_committed_tag_ver="$(echo $last_committed_tag)"
-      last_released_tag="$(snap info $CRAFT_PROJECT_NAME | awk '$1 == "latest/beta:" { print $2 }')"
-      # If the latest tag from the upstream project has not been released to
-      # beta, build that tag instead of main.
-      if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        git fetch
-        git checkout "${last_committed_tag}"
-        cd ../src
-        git checkout "${last_committed_tag}"
-      fi
+    source-tag: $SNAPCRAFT_PROJECT_VERSION
